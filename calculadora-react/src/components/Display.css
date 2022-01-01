@@ -1,0 +1,17 @@
+.display{
+    padding: 8px;
+    grid-column: span 4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0.514);
+    overflow: hidden;
+}
+
+.display .history{
+    display: flex;
+    height: 100%;
+    align-items: flex-start;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.726);
+}

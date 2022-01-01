@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "Oswald";
+  src: url("./fonts/Oswald-Regular.ttf");
+}
+
+*{
+  font-family: "Oswald", monospace;
+}
+
+body{
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  color: #fff;
+  background: linear-gradient(to right, rgb(34, 31, 31), rgb(2, 9, 59));
+}
