@@ -1,22 +1,20 @@
 import React from "react";
+import "../../fonts/Merienda.css";
 import "./Menu.css";
-
-import MenuItem from "./MenuItem";
 
 export default props => {
     return(
-        <div class="sidebar active">
-            <div class="logo-content">
-                <div class="logo">
-                    <a href="/home" class="logo-name">
+        <div className="sidebar active">
+            <div className="logo-content">
+                <div className="logo">
+                    <a href="/" className="logo-name">
                         <span className="title-1">Academic</span>
                         <span className="title-2">Applications</span>
                     </a>
                 </div>
-                <img id="button-expand" src="" />
             </div>
 
-            <ul class="nav-list">
+            <ul className="nav-list">
                 {props.children}
             </ul>
         </div>
