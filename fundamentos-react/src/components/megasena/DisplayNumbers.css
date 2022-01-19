@@ -1,0 +1,17 @@
+.number-sorted{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #adad54;
+    border-radius: 100%;
+}
+
+.btn-mega{
+    border: 1px solid black;
+    background: #adad54;
+    border-radius: 3px;
+    color: white;
+}

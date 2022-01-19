@@ -17,8 +17,7 @@ export default props => {
             </div>
 
             <ul class="nav-list">
-                <MenuItem label="Raízes de funções"></MenuItem>
-                <MenuItem label="Sistemas lineares"></MenuItem>
+                {props.children}
             </ul>
         </div>
     );
