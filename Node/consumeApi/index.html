@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+    <title>Consumindo API de Games</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">API Rest de Games</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form id="loginBox" class="d-flex justify-content-between ms-auto">
+                    <input type="email" name="loginEmail" id="loginEmail" class="form-control me-1" placeholder="Email">
+                    <input type="password" name="loginPassword" id="loginPassword" class="form-control me-1" placeholder="Senha">
+                    <button class="btn btn-outline-light me-1" onclick="login()" type="button">Login</button>
+                    <button class="btn btn-outline-light" type="button" data-bs-toggle="modal" data-bs-target="#userModal">Cadastrar</button>
+                </form>
+                <div id="loggedBox" class="d-none ms-auto me-1">
+                    Bem vindo <strong id="nameLogged"></strong>
+                    <button class="btn btn-outline-danger ms-1" onclick="logout()" type="button">Logout</button>
+                </div>
+              </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="opacity0 mt-5">
+        <div class="container">
+            <h2>Games cadastrados</h2>
+            <div id="games" class="row">
+                
+            </div>
+        </div>
+    
+        <div class="container d-flex justify-content-center mt-5">
+            <button type="button" class="btn btn-lg btn-blue" data-bs-toggle="modal" data-bs-target="#createModal">Cadastrar um game</button>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cadastrar Game</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label for="name">Nome</label>
+                <input class="form-control mb-2" type="text" name="name" id="name" placeholder="ex.: Fifa">
+                <label for="year">Ano de Lançamento</label>
+                <input class="form-control mb-2" type="number" name="year" id="year" placeholder="2021">
+                <label for="price">Preço</label>
+                <input class="form-control mb-2" type="number" name="price" id="price" placeholder="0.00">
+            </div>
+            <div class="modal-footer">
+            <button type="button" id="btn-close" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" id="btn-submit" onclick="createGame()" class="btn btn-blue">Enviar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Editar Game</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id" id="editId">
+                <label for="editName">Nome</label>
+                <input class="form-control mb-2" type="text" name="name" id="editName" placeholder="ex.: Fifa">
+                <label for="editYear">Ano de Lançamento</label>
+                <input class="form-control mb-2" type="number" name="year" id="editYear" placeholder="2021">
+                <label for="editPrice">Preço</label>
+                <input class="form-control mb-2" type="number" name="price" id="editPrice" placeholder="0.00">
+            </div>
+            <div class="modal-footer">
+            <button type="button" id="btn-close2" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" id="btn-submit" onclick="editGame()" class="btn btn-blue">Enviar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cadastrar Usuário</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id" id="editId">
+                <label for="userName">Nome</label>
+                <input class="form-control mb-2" type="text" name="name" id="userName" placeholder="Name">
+                <label for="userEmail">Email</label>
+                <input class="form-control mb-2" type="email" name="year" id="userEmail" placeholder="example@email.com">
+                <label for="userPassword">Senha</label>
+                <input class="form-control mb-2" type="password" name="price" id="userPassword">
+            </div>
+            <div class="modal-footer">
+            <button type="button" id="btn-close3" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" id="btn-submit" onclick="createUser()" class="btn btn-blue">Enviar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Toarst -->
+    <div class="toarst">
+        <div class="toarst-message"></div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.0/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+
+
+    // Games function
+    function getGames(){
+        $("#games").html("");
+        axios.get("http://localhost:3000/games", getHeaders()).then(response => {
+            let games = response.data;
+            games.forEach(game => {
+                $("#games").append(`
+                <div class="col-4 mb-2 p-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">${game.name}</h5>
+                            <p class="card-text">Lançado em: <strong>${game.year}</strong>. Preço: <strong>${game.price}</strong>.</p>
+                            <button class="btn btn-warning" data-name="${game.name}" data-year="${game.year}" data-price="${game.price}" data-id="${game.id}" data-bs-toggle="modal" data-bs-target="#editModal">Editar</button>
+                            <button onClick="deleteGame(event)" class="btn btn-danger" data-name="${game.name}" data-year="${game.year}" data-price="${game.price}" data-id="${game.id}">Deletar</button>
+                        </div>
+                    </div>
+                </div>`);
+            });
+            $("main").removeClass("opacity0");
+        }).catch(err => {
+            console.log(err);
+            if(err.response.status == 401){
+                $("main").addClass("opacity0");
+                renderToarst("Faça login para obter acesso as funcionalidades!", "#AC1912");
+            }
+        });
+    }
+
+    function createGame(){
+        let game = {
+            name: $("#name").val(),
+            year: $("#year").val(),
+            price: $("#price").val()
+        }
+
+        axios.post("http://localhost:3000/game", game, getHeaders())
+            .then(response => {
+                console.log(response);
+                renderToarst("Game cadastrado com sucesso!", "#2CAC12");
+                getGames();
+            }).catch(err => {
+                console.log(err);
+            });
+        
+        $("#btn-close").click();
+    }
+    
+    function deleteGame(event){
+        let game = {
+            id: event.target.getAttribute("data-id"),
+            name: event.target.getAttribute("data-name"),
+            year: event.target.getAttribute("data-year"),
+            price: event.target.getAttribute("data-price")
+        }
+        
+        axios.delete(`http://localhost:3000/game/${game.id}`, getHeaders())
+            .then(response => {
+                renderToarst("Game deletado com sucesso!", "#2CAC12");
+                getGames();
+            }).catch(err => {
+                console.log(err);
+            });
+    }
+
+    function editGame(){
+        let game = {
+            id: $("#editId").val(),
+            name: $("#editName").val(),
+            year: $("#editYear").val(),
+            price: $("#editPrice").val()
+        }
+
+        axios.put(`http://localhost:3000/game/${game.id}`, game, getHeaders())
+            .then(response => {
+                renderToarst("Game editado com sucesso!", "#2CAC12");
+                getGames();
+            }).catch(err => {
+                console.log(err);
+            });
+        
+            $("#btn-close2").click();
+    }
+    
+    function getHeaders(){
+        return {
+            headers:{
+                Authorization: "Bearer " + sessionStorage.getItem("token")
+            }
+        }
+    }
+
+    // User function
+    function createUser(){
+        let user = {
+            name: $("#userName").val(),
+            email: $("#userEmail").val(),
+            password: $("#userPassword").val()
+        }
+
+        axios.post("http://localhost:3000/user", user).then(response => {
+            renderToarst("Usuário cadastrado com sucesso!", "#2CAC12");
+        }).catch(err => {
+            if(err.response.status === 400){
+                renderToarst(err.response.data.err, "#AC1912");
+            }
+        });
+        $("#btn-close3").click();
+    }
+
+    function login(){
+        let user = {
+            email: $("#loginEmail").val(),
+            password: $("#loginPassword").val()
+        }
+
+        axios.post("http://localhost:3000/auth", user)
+            .then(response => {
+                sessionStorage.setItem("token", response.data.token);
+                sessionStorage.setItem("name", response.data.name);
+                isLogged();
+                renderToarst("Login efetuado!", "#2CAC12");
+                getGames();
+            })
+            .catch(err => {
+                if(err.response.status === 400){
+                    renderToarst(err.response.data.err, "#AC1912");
+                }
+            })
+    }
+
+    function logout(){
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("name");
+        isLogged();
+        getGames();
+    }
+
+    function isLogged(){
+        if(sessionStorage.getItem("name") != null || sessionStorage.getItem("name") != undefined){
+            $("#loginBox").addClass("d-none");
+            $("#loggedBox").removeClass("d-none");
+            $("#nameLogged").html(sessionStorage.getItem("name"));
+        }else{
+            $("#loggedBox").addClass("d-none");
+            $("#loginBox").removeClass("d-none");
+            $("#nameLogged").html("");
+        }
+    }
+
+    isLogged();
+    getGames();
+</script>
+<script>
+    function renderToarst(message, background){
+        $(".toarst").css({
+            opacity: 1,
+            backgroundColor: background
+        });
+
+        $(".toarst-message").html(message);
+
+        setTimeout(() => {
+            $(".toarst").css({
+                opacity: 0,
+                backgroundColor: background
+            });
+        }, 5000);
+    }
+
+    var editModalEl = document.getElementById('editModal')
+    editModalEl.addEventListener('show.bs.modal', function (event) {
+        let game = {
+            id: event.relatedTarget.getAttribute("data-id"),
+            name: event.relatedTarget.getAttribute("data-name"),
+            year: event.relatedTarget.getAttribute("data-year"),
+            price: event.relatedTarget.getAttribute("data-price")
+        }
+        
+        $("#editId").val(game.id);
+        $("#editName").val(game.name);
+        $("#editYear").val(game.year);
+        $("#editPrice").val(game.price);
+    });
+</script>
+</html>
