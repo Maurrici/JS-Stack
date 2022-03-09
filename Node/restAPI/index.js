@@ -14,18 +14,7 @@ import GamesController from "./src/controllers/GamesController.js";
 import UsersController from "./src/controllers/UsersController.js";
 
 // Database
-import database from "./src/database/database.js";
-
-database.authenticate()
-    .then(() => {
-        console.log("Database connected!");
-    })
-    .catch(err => {
-        console.log("Failed connection with database: ",err);
-    })
-
-// Models
-import Game from "./src/models/Game.js";
+import DB from "./src/database/database.js";
 
 // Routes
 app.use("", GamesController);

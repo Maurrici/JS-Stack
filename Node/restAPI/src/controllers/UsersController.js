@@ -4,26 +4,24 @@ import jwt from "jsonwebtoken";
 import JWTsecret from "../middleware/JWTsecret.js";
 const router = express.Router();
 
-// Models
-import User from "../models/User.js";
+// DB
+import DB from "../database/database.js";
 
 router.post("/user", async (req, res) => {
     let user = req.body;
-
+    
     if(user.name != undefined && user.email != undefined && user.password != undefined){
         try {
-            let existUser = await User.findOne({
-                where:{
-                    email: user.email
-                }
-            });
+            let existUser = await DB.select().where({email: user.email}).table("users").first();
 
             if(existUser == undefined){
                 let salt = bcrypt.genSaltSync(10);
                 let hash = bcrypt.hashSync(user.password, salt);
                 user.password = hash;
+                user.createdAt = new Date();
+                user.updatedAt = user.createdAt;
 
-                let newUser = await User.create(user);
+                await DB.insert(user).into("users");
                 res.sendStatus(200);
             }else{
                 res.statusCode = 400;
@@ -40,14 +38,10 @@ router.post("/user", async (req, res) => {
 
 router.post("/auth", async(req, res) => {
     let user = req.body;
-
+    
     if(user.email != undefined && user.password != undefined){
         try {
-            let existUser = await User.findOne({
-                where:{
-                    email: user.email
-                }
-            });
+            let existUser = await DB.select().where("email", user.email).table("users").first();
 
             let correct = (existUser != undefined) ? bcrypt.compareSync(user.password, existUser.password) : false;
             if(correct){

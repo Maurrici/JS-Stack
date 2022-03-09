@@ -1,8 +1,11 @@
-import Sequelize from "sequelize";
+import knex from "knex";
 
-const database = new Sequelize("apiGames", "root", "admin", {
-    dialect: "mysql",
-    host: "localhost"
+export default knex({
+    client: "mysql2",
+    connection:{
+        host: "localhost",
+        user: "root",
+        password: "admin",
+        database: "apigames"
+    }
 });
-
-export default database;

@@ -2,12 +2,12 @@ import express from "express";
 import auth from "../middleware/auth.js";
 const router = express.Router();
 
-// Model
-import Game from "../models/Game.js";
+// DB
+import DB from "../database/database.js";
 
 router.get("/games", auth, async (req, res) => {
     try{
-        const games = await Game.findAll();
+        const games = await DB.select().table("games");
         res.statusCode = 200;
         res.json(games);
     }catch(err){
@@ -21,11 +21,7 @@ router.get("/game/:id", auth, async (req, res) => {
         let id = parseInt(req.params.id);
         
         try{
-            let game = await Game.findOne({
-                where:{
-                    id: id
-                }
-            });
+            let game = await DB.select().where({id: id}).table("games").first();
 
             if(game != undefined){
                 res.statusCode = 200;
@@ -33,7 +29,6 @@ router.get("/game/:id", auth, async (req, res) => {
             }else{
                 res.sendStatus(404);
             }
-
         }catch(err){
             res.sendStatus(500);
         }    
@@ -44,12 +39,21 @@ router.get("/game/:id", auth, async (req, res) => {
 
 router.post("/game", auth, async (req, res) => {
     let newGame = req.body;
+    newGame.createdAt = new Date();
+    newGame.updatedAt = newGame.createdAt;
 
     if(newGame.name != undefined && newGame.price != undefined && newGame.year != undefined){
         try{
-            let g = await Game.create(newGame);
+            let existGame = await DB.select().where({name: newGame.name}).table("games").first();
 
-            res.sendStatus(200);
+            if(existGame == undefined) {
+                await DB.insert(newGame).into("games");
+                res.sendStatus(200);
+            }else{
+                console.log("Já existe");
+                res.sendStatus(400);
+            }
+            
         }catch(err){
             res.sendStatus(500);
         }
@@ -63,11 +67,7 @@ router.delete("/game/:id", auth, async (req, res) => {
         let id = parseInt(req.params.id);
         
         try {
-            let rowsDeleted = await Game.destroy({
-                where:{
-                    id: id
-                }
-            });
+            let rowsDeleted = await DB.where({id: id}).delete().table("games");
 
             if(rowsDeleted > 0){
                 res.sendStatus(200);
@@ -87,11 +87,7 @@ router.put("/game/:id", auth, async (req, res) => {
         let id = parseInt(req.params.id);
         
         try {
-            let game = await Game.findOne({
-                where:{
-                    id: id
-                }
-            });
+            let game = await DB.select().where({id: id}).table("games").first();
     
             if(game != undefined){
                 let {name, price, year} = req.body;
@@ -100,17 +96,13 @@ router.put("/game/:id", auth, async (req, res) => {
                 if(price != undefined) game.price = price;
                 if(year != undefined) game.year = year;
 
-                let g = await Game.update(game.dataValues, {
-                    where:{
-                        id: id
-                    }
-                });
-                console.log(g);
+                await DB.where({id: id}).update(game).table("games");
                 res.sendStatus(200);
             }else{
                 res.sendStatus(404);
             }
         } catch (error) {
+            console.log(error)
             res.sendStatus(500);
         }
         
