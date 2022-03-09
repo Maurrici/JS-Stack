@@ -1,5 +1,9 @@
 body{
-    background-color: rgb(56, 56, 56);
+    background: url(img/background.png) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: #383838;
+    font-family: 'gameovercre Medium';
 }
 
 main{
@@ -7,7 +11,23 @@ main{
 }
 
 h2{
+    display: inline-block;
+    padding: 4px;
+    border-radius: 2px;
+    background-color: #018a23cc;
     color: #d9e2e9;
+}
+
+.navbar-brand{
+    color: #018a23 !important;
+}
+
+#loggedBox{
+    color: #fff;
+}
+
+#loggedBox strong{
+    color: #018a23;
 }
 
 .toarst{
@@ -38,11 +58,83 @@ h2{
 }
 
 #games .card{
-    background-color: #9eb9cf;
+    background: url(img/videogame_asset_black_24dp.svg) no-repeat right center;
+    background-size: contain;
+    color: #fff;
+    background-color: #018a23cc;
 }
 
-.btn-blue {
+.btn-gray {
+    color: #018a23;
+    background-color: #000;
+    border-color: #018a23;
+}
+
+.btn-gray:hover {
     color: #000;
-    background-color: #9eb9cf;
-    border-color: #9eb9cf;
+    background-color: #018a23;
+    transition: 0.8s all;
+}
+
+.btn-warning {
+    color: #fff;
+    background-color: #000000b6;
+    border-color: #000000b6;
+    transition: 0.5s all;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #971b1b;
+    border-color: #971b1b;
+    transition: 0.5s all;
+}
+
+.btn-warning:hover, .btn-danger:hover, .btn-warning:focus, .btn-danger:focus {
+    color: #fff;
+    background-color: #383838;
+    border-color: #383838;
+}
+
+.btn-danger:hover, .btn-danger:focus{
+    border-color: #971b1b;
+}
+
+.btn-outline-light {
+    color: #018a23;
+    border-color: #018a23;
+}
+
+.btn-outline-light:hover {
+    color: #000;
+    background-color: #018a23;
+    border-color: #000;
+}
+
+.btn-outline-danger:hover svg{
+    fill: #fff;
+}
+
+.form-control, .form-control:focus{
+    background: #383838;
+    border: 1px solid #018a23;
+    color: #fff;
+}
+
+.modal-content{
+    color: #fff;
+    background-color: #383838;
+    border: 1px solid #018a23;
+}
+
+.modal-header{
+    border-bottom: 1px solid #018a23;
+}
+
+.modal-footer{
+    border-top: 1px solid #018a23;
+}
+
+.btn-close{
+    color: #fff;
 }
