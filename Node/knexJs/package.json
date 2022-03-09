@@ -1,0 +1,7 @@
+{
+  "type": "module",
+  "dependencies": {
+    "knex": "^1.0.3",
+    "mysql2": "^2.3.3"
+  }
+}
