@@ -11,7 +11,6 @@ router.get("/games", auth, async (req, res) => {
         res.statusCode = 200;
         res.json(games);
     }catch(err){
-        console.log("Error: ", err);
         res.sendStatus(500);
     }
 });
@@ -50,7 +49,6 @@ router.post("/game", auth, async (req, res) => {
                 await DB.insert(newGame).into("games");
                 res.sendStatus(200);
             }else{
-                console.log("Já existe");
                 res.sendStatus(400);
             }
             
@@ -102,7 +100,6 @@ router.put("/game/:id", auth, async (req, res) => {
                 res.sendStatus(404);
             }
         } catch (error) {
-            console.log(error)
             res.sendStatus(500);
         }
         
