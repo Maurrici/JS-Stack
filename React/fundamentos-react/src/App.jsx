@@ -17,6 +17,7 @@ import IndirectDad from "./components/comunication/IndirectDad";
 import Input from "./components/form/Input";
 import Contador from "./components/contador/Contador";
 import Megasena from "./components/megasena/Megasena";
+import Greeting from "./components/classesComponent/Greeting";
 
 export default (props) =>{
     return(
@@ -24,6 +25,10 @@ export default (props) =>{
             <h1>Fundamentos React</h1>
 
             <div className="Cards">
+                <Card title="#14 Componente de Classes" color="#add548">
+                    <Greeting name="Maurício" type="Bom dia"></Greeting>
+                </Card>
+
                 <Card title="#13 Desafio Megasena" color="#adad54">
                     <Megasena></Megasena>
                 </Card>
