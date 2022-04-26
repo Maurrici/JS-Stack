@@ -1,10 +1,11 @@
 <template>
-    <div class="item-panel">
+    <div :class="{'item-panel': true}">
         <div class="name-box">{{author.name}}</div>
         <div class="info-box">
             Livros publicados: <strong>{{author.books}}</strong><br>
             Principal Lançamento: <strong>{{author.mainBook}}</strong> <br>
-            Idade: {{author.age}} <br>
+            <span v-if="showAge">Idade: {{author.age}}</span>
+            <span v-else>Idade confidencial</span> <br>
             <p>"{{author.quote}}"</p>
         </div>
     </div>
@@ -13,7 +14,8 @@
 <script>
 export default {
     props: {
-        author: Object
+        author: Object,
+        showAge: Boolean
     }
 }
 </script>
@@ -22,6 +24,7 @@ export default {
     .item-panel{
         width: 33%;
         padding: 8px;
+        margin-top: 5px;
         display: flex;
         flex-direction: column;
         justify-content: center;
