@@ -1,7 +1,8 @@
 <template>
   <div id="app" class="row justify-content-start align-items-center">
-    <div v-for="(pokemon, index) in pokemons" :key="index" class="col-12 col-sm-6 col-md-4 col-lg-2 col- d-flex justify-content-center mb-2">
-      <PokemonCard :num="index + 1" :name="pokemon.name" :url="pokemon.url"/>
+    <SearchForm :data="pokemons" @filterList="updatePokemons($event)" />
+    <div v-for="(pokemon) in filteredPokemons" :key="pokemon.id" class="col-12 col-sm-6 col-md-4 col-lg-2 col- d-flex justify-content-center mb-2">
+      <PokemonCard :url="pokemon.url"/>
     </div>
   </div>
 </template>
@@ -9,16 +10,19 @@
 <script>
 import axios from "axios";
 import PokemonCard from "./components/PokemonCard.vue";
+import SearchForm from "./components/SearchForm.vue";
 
 export default {
   name: 'App',
   components:{
-    PokemonCard
-  },
+    PokemonCard,
+    SearchForm,
+},
 
   data(){
     return{
-      pokemons: []
+      pokemons: [],
+      filteredPokemons: []
     }
   },
 
@@ -27,8 +31,15 @@ export default {
       let response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0");
     
       this.pokemons = response.data.results;
+      this.filteredPokemons = response.data.results;
     }catch(err){
       console.log(err);
+    }
+  },
+
+  methods:{
+    updatePokemons: function($event){
+      this.filteredPokemons = $event;
     }
   }
 }
