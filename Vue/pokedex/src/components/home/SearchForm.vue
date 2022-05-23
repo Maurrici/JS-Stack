@@ -1,6 +1,6 @@
 <template>
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Charizard, Pikachu..." v-model="search">
+        <input type="text" class="form-control" placeholder="Charizard, Pikachu..." v-model="search" @keyup.enter="searchResults">
         <button class="btn btn-outline-secondary" type="button" @click="searchResults">Buscar</button>
     </div>
 </template>
