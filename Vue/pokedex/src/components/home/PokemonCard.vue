@@ -4,7 +4,7 @@
         <div class="card-body">
             <h5 class="card-title"><strong>#{{pokemon.id}}</strong> {{pokemon.name}}</h5>
             <p class="card-text">
-                <span v-for="(type, index) in pokemon.types" :key="index" class="badge ms-1" :style="{backgroundColor: COLORS[pokemon.types[0]]}">
+                <span v-for="(type, index) in pokemon.types" :key="index" class="badge ms-1" :style="{backgroundColor: COLORS[pokemon.types[index]]}">
                     {{type}}
                 </span>
             </p>
@@ -51,7 +51,7 @@ export default {
                 "dragon": "#54a0ff"
             },
             currentImg: '',
-            index: 1
+            index: 0
         }
     },
     props:{
@@ -66,9 +66,8 @@ export default {
             this.pokemon = {...response.data};
             this.pokemon.name = this.pokemon.name[0].toUpperCase() + this.pokemon.name.slice(1)
             this.pokemon.types = this.pokemon.types.map(item => item.type.name);
-            this.pokemon.sprites = Object.keys(this.pokemon.sprites).filter(item => item == "front_default" || item == "back_default")
-                                    .map(item => this.pokemon.sprites[item]);
-
+            this.pokemon.sprites = Object.keys(this.pokemon.sprites.other["official-artwork"]).filter(item => item == "front_default" || item == "back_default")
+                                    .map(item => this.pokemon.sprites.other["official-artwork"][item]);
             //Start img
             this.currentImg = this.pokemon.sprites[this.index];
         }catch(err){
