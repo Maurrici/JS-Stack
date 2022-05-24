@@ -51,7 +51,7 @@ export default {
                 "dragon": "#54a0ff"
             },
             currentImg: '',
-            index: 2
+            index: 1
         }
     },
     props:{
@@ -66,8 +66,8 @@ export default {
             this.pokemon = {...response.data};
             this.pokemon.name = this.pokemon.name[0].toUpperCase() + this.pokemon.name.slice(1)
             this.pokemon.types = this.pokemon.types.map(item => item.type.name);
-            this.pokemon.sprites = Object.keys(this.pokemon.sprites).map(item => this.pokemon.sprites[item]).filter(item => item != null && typeof item == "string");
-
+            this.pokemon.sprites = Object.keys(this.pokemon.sprites).filter(item => item == "front_default" || item == "back_default")
+                                    .map(item => this.pokemon.sprites[item]);
 
             //Start img
             this.currentImg = this.pokemon.sprites[this.index];
