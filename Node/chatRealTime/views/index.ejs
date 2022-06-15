@@ -10,8 +10,8 @@
 </head>
 <body>
     <h1>Chat Real Time</h1>
-    <div class="container row justify-content-center">
-        <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-4 border rounded p-3">
             <form action="/chat" method="post">
                 <div class="mb-3">
                   <label for="name" class="form-label">Nome de usuário</label>
@@ -23,13 +23,24 @@
                   <input type="number" class="form-control" id="code" name="code">
                   <div id="emailHelp" class="form-text">Digite apenas os 4 números do seu código</div>
                 </div>
-                <div class="mb-3 form-check">
+                <div class="mb-3">
                     <label for="description" class="form-label">Descrição</label>
-                    <textarea id="description" name="description"></textarea>
+                    <textarea id="description" class="form-control" name="description"></textarea>
                     <div id="emailHelp" class="form-text">Fale um pouco sobre você :)</div>
                 </div>
-                <button type="submit" class="btn btn-primary">Entrar</button>
-              </form>
+                <select name="gameID" class="form-select mb-3">
+                  <option selected>Selecione um jogo</option>
+                  <option value="1">League of Legends</option>
+                  <option value="2">FIFA</option>
+                  <option value="3">Minecraft</option>
+                  <option value="4">Overcooked</option>
+                  <option value="5">Fall Guys</option>
+                  <option value="6">Gartic</option>
+                </select>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </form>
         </div>
     </div>
 </body>
