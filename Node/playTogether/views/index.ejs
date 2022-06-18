@@ -1,0 +1,58 @@
+<%- include('header.ejs'); %>
+
+    <h1 class="mb-3"></h1>
+    <main class="row justify-content-center mb-4">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-4 form-card">
+            <form action="/chat" method="post">
+                <div class="mb-2">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-12 col-sm-6 icon-preview">
+                            <img src="./img/icon0.jpg" class="img-fluid">
+                            <select id="icon" name="icon" onchange="changeImg()" class="form-select col-12 col-sm-6">
+                                <option value="0" selected>Selecione uma imagem</option>
+                                <option value="1">Squirtle de óculos</option>
+                                <option value="2">Pikachu de boné</option>
+                                <option value="3">Pica-pau bebendo café</option>
+                                <option value="4">Jerry lendo livro</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-2">
+                  <label for="name" class="form-label">Nome de usuário</label>
+                  <input type="text" class="form-control" id="name" name="name">
+                  <div id="emailHelp" class="form-text">Utilize seu nome do Discord</div>
+                </div>
+                <div class="mb-2">
+                  <label for="code" class="form-label">Código do Discord</label>
+                  <input type="number" class="form-control" id="code" name="code">
+                  <div id="emailHelp" class="form-text">Digite apenas os 4 números do seu código</div>
+                </div>
+                <div class="mb-2">
+                    <label for="description" class="form-label">Descrição</label>
+                    <textarea id="description" class="form-control" name="description"></textarea>
+                    <div id="emailHelp" class="form-text">Fale um pouco sobre você :)</div>
+                </div>
+                <select name="gameID" class="form-select mb-3">
+                  <option selected>Selecione um jogo</option>
+                  <option value="1">League of Legends</option>
+                  <option value="2">FIFA</option>
+                  <option value="3">Minecraft</option>
+                  <option value="4">Overcooked</option>
+                  <option value="5">Fall Guys</option>
+                  <option value="6">Gartic</option>
+                </select>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script>
+        function changeImg(){
+            let id = $("#icon").val();
+
+            $(".icon-preview img").attr("src", `./img/icon${id}.jpg`);
+        }
+    </script>
+<%- include('header.ejs'); %>
