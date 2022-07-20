@@ -1,8 +1,8 @@
 class HomeController{
 
     async index(req, res){
-        res.send("Bem vindo à sua aplicação");
+        res.send("APP EXPRESS! - Guia do programador");
     }
 }
 
-export default new HomeController;
+export default new HomeController();
