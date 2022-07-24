@@ -1,7 +1,11 @@
 class HomeController{
 
     async index(req, res){
-        res.send("APP EXPRESS! - Guia do programador");
+        res.send("APP EXPRESS!");
+    }
+
+    async validate(req, res){
+        res.json({status: true});
     }
 }
 
