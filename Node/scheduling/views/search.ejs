@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./fullCalendar/main.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="./fullCalendar/main.min.js"></script>
+    <title>Consultas agendadas</title>
+</head>
+<body>
+    <%- include("./navbar.ejs") %>
+    <div class="container">
+        <h1 class="display-4 text-center">Histórico de Consultas</h1>
+        <div id="appointments" class="row justify-content-center align-items-center mt-5">
+            <div class="col-12">
+                <form action="/search" method="get">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="search" placeholder="Pesquise por nome ou CPF" value="<%= search %> ">
+                        <button class="btn btn-outline-secondary" type="submit">Pesquisar</button>
+                    </div>
+                </form>
+            </div>
+            <% appointments.forEach(appointment => { %>
+                <div class="col-12 mt-2">
+                    <div class="card">
+                        <div class="card-body row justify-content-center">
+                            <strong class="col"><%= appointment.id %></strong><span class="col"><%= appointment.name %></span><span class="col"><%= appointment.cpf %></span><span class="col"><%= `${appointment.date.toLocaleDateString("pt-BR")} ${appointment.time}`%></span>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</body>
+</html>
