@@ -1,0 +1,121 @@
+<%- include('header.ejs'); %>
+
+    <div class="row">
+        <div class="col-12 col-sm-4">
+            <div class="mb-3">
+                <img src="./img/logo.png" class="img-fluid" alt="Play together">
+            </div>
+        </div>
+        <div class="col-12 col-sm-8 title">
+            Sala <span id="room" class="mx-1"></span> - <span id="gameName" class="mx-1"></span> 
+        </div>
+    </div>
+
+    <div class="row box-light">
+        <div id="players" class="col-12 col-md-8">
+        </div>
+
+        <div id="chat" class="col-12 col-md-4">
+            <div id="messages">
+            </div>
+            <div id="button-messages">
+                <div class="input-group">
+                    <input type="text" id="msg" class="form-control" placeholder="Escreva sua mensagem aqui...">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" onclick="sendMessage()">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var user = {
+            icon: parseInt("<%= user.icon %>"),
+            name: "<%= user.name %>",
+            code: parseInt("<%= user.code %>"),
+            description: "<%= user.description %>",
+            gameID: parseInt("<%= user.gameID %>"),
+            roomID: 0
+        }
+
+        // Criação do socket cliente
+        var socket = io("http://localhost:3000");
+
+        // Envia dados para o socket do servidor
+        socket.emit("connected", user);
+
+        // Recebe dados do socket do servidor
+        socket.on("connected", (data) => {
+            // Renderiza as mensagens da sala conectada
+            data.messages.forEach(msg => showMessage(msg));
+
+            // Renderiza os usuários da sala conectada
+            data.players.forEach(player => showPlayers(player));
+
+            // Salva o ID da sala
+            user.roomID = data.id;
+            $("#room").html(user.roomID);
+            $("#gameName").html(data.gameName);
+        });
+
+        // Recebe uma mensagem para o servidor
+        socket.on("message", (data) => showMessage(data));
+
+        // Recebe aviso de novo jogador
+        socket.on("newPlayer", (data) => showPlayers(data));
+
+        // Recebe aviso de saída de jogador
+        socket.on("removePlayer", (data) => {
+            $("#players").html("");
+            data.forEach(player => showPlayers(player));
+        });
+
+        // Evento de desconexão
+        socket.on("disconnect", () => { console.log("Desconectado")});
+
+        $(document).on("keydown", (event) => {
+            if(event.keyCode === 13) sendMessage();
+        });
+
+        function sendMessage(){
+            let message = document.querySelector("#msg").value;
+
+            if(message != ''){
+                socket.emit("sendMessage", {user: user.name + "#" + user.code, message, id: user.roomID});
+                document.querySelector("#msg").value = '';
+            }
+        }
+
+        function showMessage(data){
+            $("#messages").append(`
+                <div class="row">
+                    <div class="col-12 col-sm-4 names">
+                        ${data.user}:
+                    </div>
+                    <div class="col-12 col-sm-8">
+                        ${data.message}
+                    </div>
+                </div>
+            `);
+        }
+        
+        function showPlayers(data){
+            $("#players").append(`
+                <div class="row card-player mb-2">
+                    <div class="col-3 icon" style="background-image: url('./img/icon${data.icon}.jpg');">
+                    </div>
+                    <div class="col-8 d-flex flex-column justify-content-center align-items-start">
+                        <div class="player-name">
+                            ${data.name}
+                        </div>
+                        <div class="player-description">
+                            ${data.description}
+                        </div>
+                    </div>
+                </div>
+            `);
+        }
+    </script>
+
+<%- include('footer.ejs'); %>

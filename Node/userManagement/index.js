@@ -1,20 +1,16 @@
-import express from 'express';
 import bodyParser from 'body-parser';
-import router from './routes/route.js';
+import express from 'express';
+import router from "./routes/routes.js";
+import cors from "cors";
 
 const app = express();
+ 
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
-// Config body-parser
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use("/",router);
 
-// ---------------- Routes ------------------
-app.use("", router);
-
-app.listen(3000, (err) => {
-    if(err == undefined){
-        console.log("Server is running...");
-    }else{
-        console.log("Error: ", err);
-    }
+app.listen(3000,() => {
+    console.log("Server is running");
 });
