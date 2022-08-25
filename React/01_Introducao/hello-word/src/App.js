@@ -5,6 +5,7 @@ function App() {
   return (
     <div className="App">
       <h1>Hello World React!</h1>
+      <p className='description'>Este é o primeiro desafio para entrar no mundo de dev front-end!</p>
     </div>
   );
 }
