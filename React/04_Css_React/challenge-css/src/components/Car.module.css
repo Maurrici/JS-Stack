@@ -1,0 +1,52 @@
+.carCard{
+    margin: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 320px;
+    max-width: 470px;
+    border: 1px solid rgb(164, 68, 68);
+    border-radius: 8px;
+    background-color: #fff;
+    color: rgb(164, 68, 68);
+    transition: all 2s;
+    overflow: hidden;
+}
+.carCard:hover{
+    cursor: pointer;
+}
+.carCard:hover .carTitle{
+    width: 100%;
+    background-color: rgb(164, 68, 68);
+    color: #fff;
+}
+
+.carTitle{
+    width: 100%;
+    font-size: 1.5em;
+    padding: 8px 0px;
+}
+
+.carBox{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid rgb(164, 68, 68);
+}
+
+.carBox .carField:first-child{
+    border-right: 1px solid rgb(164, 68, 68);
+}
+
+.carField{
+    padding: 8px 2px;
+    font-size: 1em;
+    width: 100%;
+}
+
+.label{
+    margin-bottom: 4px;
+    font-weight: bolder;
+    text-align: left;
+}
