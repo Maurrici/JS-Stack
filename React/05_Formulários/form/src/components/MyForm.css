@@ -1,0 +1,15 @@
+form{
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form label{
+    margin: 8px 0px;
+}
+
+form span, form input{
+    display: block;
+}
