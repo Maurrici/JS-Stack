@@ -1,0 +1,13 @@
+.App{
+  height: 100vh;
+  padding-top: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h1{
+  font-family: 'Nova Mono', monospace;
+  font-weight: 100;
+}
