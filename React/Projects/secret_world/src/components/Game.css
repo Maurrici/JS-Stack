@@ -1,0 +1,127 @@
+.game{
+    width: 100%;
+    height: 100%;
+    padding: 16px 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.game p{
+    font-size: 1.8rem;
+}
+
+strong{
+    color: var(--cor-shine);
+}
+
+.screen{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.play{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.word{
+    width: fit-content;
+    margin: 2rem auto;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    background-color: var(--cor-items);
+}
+
+.letter{
+    margin: 0px 2px;
+    height: 8vh;
+    width: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8vh;
+    font-family: 'Nova Mono', monospace;
+    border-radius: 4px;
+    color: black;
+    background-color: #fff;
+}
+
+form{
+    margin-top: 2rem;
+}
+
+form span{
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    display: block;
+}
+
+form input{
+    margin: 8px auto;
+    display: block;
+    height: 8vh;
+    width: 8vh;
+    font-size: 8vh;
+    font-family: 'Nova Mono', monospace;
+    text-align: center;
+    color: black;
+    border: 5px solid var(--cor-shine);
+    border-radius: 4px;
+}
+
+/* Section of scores */
+.scores{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.scores img{
+    width: 8vh;
+    height: 8vh;
+    min-width: 16px;
+    min-height: 16px;
+    margin: 0px 4px;
+}
+
+.scores .letters-tried{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.scores .letters-tried div{
+    margin: 0px 8px;
+    font-size: 8vh;
+    font-family: 'Nova Mono', monospace;
+    border-radius: 4px;
+}
+
+.green{
+    color: #40FF34;
+}
+
+.red{
+    color: #FF4300;
+}

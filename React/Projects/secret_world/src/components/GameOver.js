@@ -1,6 +1,6 @@
 import "./GameOver.css";
 
-export default (props) => {
+const GameOver = (props) => {
     return(
         <div>
             <h1>Fim de jogo</h1>
@@ -8,3 +8,5 @@ export default (props) => {
         </div>
     )
 }
+
+export default GameOver;

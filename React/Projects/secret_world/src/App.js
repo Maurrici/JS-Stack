@@ -27,6 +27,10 @@ function App() {
   const [selectWord, setSelectWord] = useState("");
   const [letters,  setLetters] = useState("");
 
+  const [tryLetter, setTryLetter] = useState([{value: "A", status: "wrong"}, {value: "B", status: "correct"}]);
+  const [lifes, setLifes] = useState(3);
+  const [score, setScore] = useState(0);
+
   const pickWordAndCategory = () => {
     const categories = Object.keys(words);
     const category = categories[Math.floor(Math.random() * categories.length)];
@@ -61,7 +65,7 @@ function App() {
   return (
     <div className="App">
        {gameStage === "start" && <StartScreen startGame={startGame} />}
-       {gameStage === "game" && <Game verifyLetter={verifyLetter} category={selectCategory} word={selectWord} letters={letters} />}
+       {gameStage === "game" && <Game verifyLetter={verifyLetter} category={selectCategory} word={selectWord} letters={letters} tryLetter={tryLetter} lifes={lifes} score={score} />}
        {gameStage === "end" && <GameOver retry={retry} />}
     </div>
   );
