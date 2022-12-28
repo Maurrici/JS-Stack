@@ -1,0 +1,44 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "T-shirt My hero Academy",
+      "value": 59.9
+    },
+    {
+      "id": 2,
+      "name": "Carteira All Might",
+      "value": 14.9
+    },
+    {
+      "id": 3,
+      "name": "Botas Zero Gravity",
+      "value": 89.9
+    },
+    {
+      "name": "Luvas Dynamight",
+      "value": "22",
+      "id": 4
+    },
+    {
+      "name": "Proteína All Might",
+      "value": "45",
+      "id": 6
+    },
+    {
+      "name": "Tênis Igenium",
+      "value": "130",
+      "id": 7
+    },
+    {
+      "name": "Tênis Igenium",
+      "value": "130",
+      "id": 8
+    },
+    {
+      "name": "Luvas Deku",
+      "value": "15",
+      "id": 9
+    }
+  ]
+}

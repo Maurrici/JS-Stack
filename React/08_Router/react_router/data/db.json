@@ -1,0 +1,22 @@
+{
+    "players": [
+        {
+            "id": 1,
+            "name": "Lionel Messi",
+            "team": "Paris Saint Germain",
+            "shortName": "PSG"
+        },
+        {
+            "id": 2,
+            "name": "Herling Haaland",
+            "team": "Manchester City",
+            "shortName": "MCY"
+        },
+        {
+            "id": 3,
+            "name": "Yago Pikachu",
+            "team": "Fortaleza Esporte Clube",
+            "shortName": "FEC"
+        }
+    ]
+}

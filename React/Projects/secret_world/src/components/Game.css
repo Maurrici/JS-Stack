@@ -42,13 +42,14 @@ strong{
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    flex-wrap: wrap;
     border: 1px solid #fff;
     border-radius: 4px;
     background-color: var(--cor-items);
 }
 
 .letter{
-    margin: 0px 2px;
+    margin: 2px 2px;
     height: 8vh;
     width: 8vh;
     display: flex;
@@ -59,6 +60,10 @@ strong{
     border-radius: 4px;
     color: black;
     background-color: #fff;
+}
+
+.letter.space{
+    background-color: transparent;
 }
 
 form{
@@ -87,8 +92,11 @@ form input{
 
 /* Section of scores */
 .scores{
+    background-color: var(--cor-shine-soft);
+    color: black;
     width: 30%;
     height: 100%;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -101,6 +109,11 @@ form input{
     min-width: 16px;
     min-height: 16px;
     margin: 0px 4px;
+}
+
+.scores .score-points{
+    font-size: 8vh;
+    color: var(--cor-items);
 }
 
 .scores .letters-tried{

@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+}
+
+span, label{
+  display: block;
+}
+
+input, button{
+  padding: 5px;
+  border-radius: 5px;
+}
+
+button{
+  margin-top: 8px;
+  border-width: 1px;
+}
+
+

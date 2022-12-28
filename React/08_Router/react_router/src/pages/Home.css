@@ -1,0 +1,21 @@
+.list{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    border-radius: 8px;
+    margin: 20px 8px;
+    padding: 8px;
+}
+
+.list .item{
+    display: inline;
+    border: 2px solid gray;
+    border-radius: 8px;
+    margin: 0 8px;
+    padding:  0 8px;
+}
+
+.list .item strong{
+    display: block;
+}
