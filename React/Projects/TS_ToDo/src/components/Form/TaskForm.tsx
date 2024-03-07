@@ -18,7 +18,7 @@ const TaskForm = ({ btnText, taskList, setTaskList }: Props) => {
     const addTask = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const id = new Date().getTime();
-        console.log(id)
+
         const newTask: Task = {
             id,
             title,

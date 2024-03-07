@@ -6,7 +6,7 @@ export default (props) => {
     const [name, setName] = useState(props ? props.name : "");
     const [email, setEmail] = useState(props ? props.email : "");
     const [bio, setBio] = useState(props ? props.bio : "");
-    const [role, setRole] = useState(props ? props.role : "")
+    const [role, setRole] = useState(props ? props.role : "");
 
     // 4 - Tratamento e envio de dados
     const handleSubmit = (e) => {

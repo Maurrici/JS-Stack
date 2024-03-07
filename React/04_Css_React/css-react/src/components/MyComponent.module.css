@@ -1,0 +1,15 @@
+h1{
+    color: rgb(64, 64, 156);
+}
+
+.titleBig{
+    font-size: 4em;
+    color: rgb(156, 64, 64);
+}
+
+.box{
+    width: min-content;
+    padding: 5px;
+    border: 1px solid rgb(156, 64, 64);
+    border-radius: 8px;
+}
